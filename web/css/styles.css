@@ -1,0 +1,35 @@
+.page-header > div {
+    display: inline-block;
+}
+
+#sprintDetails {
+    display: none;
+}
+
+table.table td {
+    margin-bottom: 10px;
+}
+
+/*
+    blue    #337ab7
+    green   #5cb85c
+    red     #d9534f
+    orange  #f0ad4e
+    grey    #777
+
+*/
+
+.issues td:last-child {
+    font-size: 250%;
+    vertical-align: middle;
+    text-align: center;
+    color: #FFF;
+}
+
+.issue-success td:last-child { background-color: #5cb85c; }
+.issue-warning td:last-child { background-color: #f0ad4e; }
+.issue-danger  td:last-child { background-color: #d9534f; }
+
+.issue-success td:first-child { border-left: 4px solid #5cb85c; }
+.issue-warning td:first-child { border-left: 4px solid #f0ad4e; }
+.issue-danger  td:first-child { border-left: 4px solid #d9534f; }
