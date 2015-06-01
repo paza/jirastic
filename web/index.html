@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="Sprint Resumee">
+        <meta name="author" content="Patrick Zahnd">
+        <link rel="icon" href="/favicon.ico">
+
+        <title>Sprint</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <script id="jira-issue-row-template" type="text/x-handlebars-template">
+            <tr data-key="{{issueKey}}">
+                <td nowrap><a href="{{jiraUrl}}browse/{{issueKey}}">{{issueKey}}</a></td>
+                <td class="owner">loading</td>
+                <td>
+                    <span class="label label-{{statusType}}">{{statusName}}</span>
+                </td>
+                <td>
+                    {{summary}}
+
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Test instructions</h3>
+                        </div>
+                        <div class="panel-body testInstructions">
+                            loading
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Reopen</a></li>
+                        <li><a href="#">Close</a></li>
+                    </ul>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            Actions
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Reopen</a></li>
+                            <li><a href="#">Close</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </script>
+
+        <div class="container">
+
+            <div class="page-header">
+                <h1>Sprint resum&eacute;</h1>
+                <p class="lead">Graviton Sprint 7.</p>
+            </div>
+
+            <h3>Burndown</h3>
+            <p>The burndown chart.</p>
+            <div class="row">
+                <div class="col-md-4">TBD.</div>
+                <div class="col-md-8">TBD.</div>
+            </div>
+
+            <h3>Closed stories</h3>
+            <p>Closed.</p>
+            <div class="row">
+                <div class="col-md-12">
+                    <table id="closed" class="table">
+                        <thead>
+                            <tr>
+                                <th>Issue</th>
+                                <th>Owner</th>
+                                <th>Status</th>
+                                <th>Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <h3>Resolved stories</h3>
+            <p>Resolved.</p>
+            <div class="row">
+                <div class="col-md-12">
+                    <table id="resolved" class="table">
+                        <thead>
+                            <tr>
+                                <th>Issue</th>
+                                <th>Owner</th>
+                                <th>Status</th>
+                                <th>Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <h3>Open Stories</h3>
+            <p>Stories not completed.</p>
+            <div class="row">
+                <div class="col-md-12">
+                    <table id="open" class="table">
+                        <thead>
+                            <tr>
+                                <th>Issue</th>
+                                <th>Owner</th>
+                                <th>Status</th>
+                                <th>Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div> <!-- /container -->
+
+
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/handlebars.js"></script>
+        <script src="/js/jquery.linkify.js"></script>
+        <script src="/js/jirastic.js"></script>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+{
+    "name": "paza/jirastic",
+    "license": "MIT",
+    "type": "project",
+    "description": "jirastic - JIRA Scrum Statistics",
+    "authors": [
+        {
+            "name": "Patrick Zahnd",
+            "email": "pazaaa@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "~5.4",
+        "guzzle/guzzle": "~3.9",
+        "silex/silex": "~1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Paza\\Provider\\": "src/Provider",
+            "Paza\\Controller\\": "src/Controller"
+        }
+    }
+}

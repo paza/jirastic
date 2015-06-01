@@ -1,0 +1,16 @@
+{
+    "urls": {
+        "jira": "https://jira.example.com/",
+        "rest": "https://jira.example.com/rest/"
+    },
+    "logins": {
+        "read": {
+            "user": "username",
+            "pass": "password"
+        },
+        "write": {
+            "user": "username",
+            "pass": "password"
+        }
+    }
+}
