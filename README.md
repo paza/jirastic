@@ -11,3 +11,4 @@ How to use:
 ```
 php -S localhost:8080 -t web web/index.php
 ```
+* Access http://localhost:8080/index.html
