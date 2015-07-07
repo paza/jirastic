@@ -40,7 +40,7 @@
                         <li><a href="#">Close</a></li>
                     </ul>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <button type="button" class="btn btn-{{statusType}} dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             {{statusName}}
                             <span class="caret"></span>
                         </button>
@@ -51,18 +51,23 @@
                     </div>
                 </td>
                 <td>
-                    {{summary}}
+                    <h5>{{summary}}</h5>
 
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Test instructions</h3>
-                        </div>
-                        <div class="panel-body testInstructions">
-                            loading
+                    <div role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#td-{{issueKey}}" aria-controls="td-{{issueKey}}" role="tab" data-toggle="tab">Test Instruction</a></li>
+                            <li role="presentation"><a href="#desc-{{issueKey}}" aria-controls="desc-{{issueKey}}" role="tab" data-toggle="tab">Description</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active testInstructions" id="td-{{issueKey}}">Home</div>
+                            <div role="tabpanel" class="tab-pane description" id="desc-{{issueKey}}">Loading...</div>
                         </div>
                     </div>
                 </td>
-                <td>
+                <td width="2rem">
                     <span class="glyphicon {{icon}}"></span>
                 </td>
             </tr>
@@ -107,13 +112,6 @@
             </div>
 
             <div id="sprintDetails">
-                <h3>Burndown</h3>
-                <p>The burndown chart.</p>
-                <div class="row">
-                    <div class="col-md-4">TBD.</div>
-                    <div class="col-md-8">TBD.</div>
-                </div>
-
                 <h3>Closed stories</h3>
                 <div class="row">
                     <div class="col-md-12">
@@ -169,6 +167,32 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+
+                <h3>Retrospective Tasks</h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="retro" class="table issues">
+                            <thead>
+                                <tr>
+                                    <th>Issue / Owner</th>
+                                    <th>Status</th>
+                                    <th>Description</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <h3>Burndown</h3>
+                <p>The burndown chart.</p>
+                <div class="row">
+                    <div class="col-md-4">TBD.</div>
+                    <div class="col-md-8">TBD.</div>
                 </div>
             </div>
 

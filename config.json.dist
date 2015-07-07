@@ -12,5 +12,6 @@
             "user": "username",
             "pass": "password"
         }
-    }
+    },
+    "retrospective-epics": ["JIRA-1234", "JIRA-2345"]
 }

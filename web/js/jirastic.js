@@ -37,8 +37,15 @@
                 allIssueKeys.push(issue.key);
                 console.log(issue);
 
+                var type = "closed";
+
+                // epic link
+                if (0 <= $.inArray(issue.epic, data.retroepics)) {
+                    type = "retro";
+                }
+
                 // write header
-                $("#closed tbody").append(issueRowTpl({
+                $("#" + type + " tbody").append(issueRowTpl({
                     statusType: "success",
                     icon: "glyphicon-ok",
                     issueKey: issue.key,
@@ -51,6 +58,8 @@
             console.log("incompleted");
             $.each(data.contents.incompletedIssues, function(index, issue) {
                 allIssueKeys.push(issue.key);
+
+                console.log("incompleted issue");
                 console.log(issue);
 
                 var type = "open";
@@ -80,6 +89,11 @@
                         break;
                 }
 
+                // epic link
+                if (0 <= $.inArray(issue.epic, data.retroepics)) {
+                    type = "retro";
+                }
+
                 // write header
                 $("#" + type + " tbody").append(issueRowTpl({
                     statusType: statusType,
@@ -104,6 +118,9 @@
                 console.log(data);
 
                 $.each(data.issues, function(index, issue) {
+
+                    console.log(issue);
+
                     var item = $("[data-key='" + issue.key + "']");
 
                     var owner = issue.fields.creator.displayName;
@@ -115,19 +132,25 @@
 
                     item.find(".owner").html(owner);
 
-                    var testInstructions = "";
+                    var testInstructions = "<p>No test instructions available.</p>";
 
                     if (issue.fields.customfield_10478) {
                         testInstructions = issue.fields.customfield_10478;
                         testInstructions = "<p>" + testInstructions.split("\n").join("</p><p>") + "</p>";
                     }
 
+                    var description = "<p>No description available.</p>";
+
+                    if (issue.fields.description) {
+                        description = "<p>" + issue.fields.description.split("\n").join("</p><p>") + "</p>";
+                    }
+
                     item.find(".testInstructions").html(testInstructions).linkify();
-
-                    $(".loaderWrapper").hide();
-                    $("#sprintDetails").show();
-
+                    item.find(".description").html(description).linkify();
                 });
+
+                $(".loaderWrapper").hide();
+                $("#sprintDetails").show();
             });
         });
     };
@@ -184,18 +207,6 @@
             loadBoardSprints(el.data("id"));
         });
     });
-
-    // owner - customfield_16025
-
-    // $('#closed')
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
 
 
     /**

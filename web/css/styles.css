@@ -6,8 +6,16 @@
     display: none;
 }
 
-table.table td {
+.table td {
     margin-bottom: 10px;
+}
+
+.table td:nth-child(3) {
+    width: 100%;
+}
+
+.table h2 {
+    margin-top: 2px;
 }
 
 /*
@@ -41,4 +49,11 @@ table.table td {
 .loaderWrapper {
     position: relative;
     height: 400px;
+}
+
+.tab-content {
+      border: 1px solid #ddd;
+      border-top: none;
+      padding: 10px 6px 0 6px;
+      border-radius: 0 0 4px 4px;
 }
