@@ -21,10 +21,10 @@ $app['debug'] = '127.0.0.1' === $_SERVER['REMOTE_ADDR'] || '::1' === $_SERVER['R
 $app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 $app->register(new Paza\Provider\GuzzleServiceProvider(), array(
-    'guzzle.client.read.user' => $app['config']['login_read_user'],
-    'guzzle.client.read.pass' => $app['config']['login_read_pass'],
-    'guzzle.client.write.user' => $app['config']['login_write_user'],
-    'guzzle.client.write.pass' => $app['config']['login_write_pass'],
+    'guzzle.client.read.user' => $app['config']['parameters']['login_read_user'],
+    'guzzle.client.read.pass' => $app['config']['parameters']['login_read_pass'],
+    'guzzle.client.write.user' => $app['config']['parameters']['login_write_user'],
+    'guzzle.client.write.pass' => $app['config']['parameters']['login_write_pass'],
 ));
 
 /**
