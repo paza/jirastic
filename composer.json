@@ -12,7 +12,32 @@
     "require": {
         "php": "~5.4",
         "guzzle/guzzle": "~3.9",
-        "silex/silex": "~1.2"
+        "silex/silex": "~1.2",
+        "incenteev/composer-parameter-handler": "^2.1",
+        "symfony/yaml": "^2.7",
+        "deralex/yaml-config-service-provider": "^1.0"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters"
+        ],
+        "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters"
+        ]
+    },
+    "extra": {
+        "incenteev-parameters": {
+            "file": "config.yml",
+            "env-map": {
+                "url_jira": "JIRA_URL",
+                "url_rest": "JIRA_REST",
+                "login_read_user": "JIRA_RO_USER",
+                "login_read_pass": "JIRA_RO_PASS",
+                "login_write_user": "JIRA_RW_USER",
+                "login_write_pass": "JIRA_RW_PASS",
+                "retrospective_epics": "JIRA_RETRO_EPICS"
+            }
+        }
     },
     "autoload": {
         "psr-4": {

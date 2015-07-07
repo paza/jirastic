@@ -14,23 +14,17 @@ use Symfony\Component\HttpFoundation\Session\Session;
 ErrorHandler::register();
 
 $app = new Application();
+$app->register(new DerAlex\Silex\YamlConfigServiceProvider(__DIR__ . '/../config.yml'));
 
 $app['debug'] = '127.0.0.1' === $_SERVER['REMOTE_ADDR'] || '::1' === $_SERVER['REMOTE_ADDR'];
-
-// Load config
-$config = json_decode(@file_get_contents(__DIR__ . '/../config.json'), true);
-
-if (empty($config)) {
-    throw new \LogicException('Please configure the app by copying config.json.dist to config.json');
-}
 
 $app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 $app->register(new Paza\Provider\GuzzleServiceProvider(), array(
-    'guzzle.client.read.user' => $config['logins']['read']['user'],
-    'guzzle.client.read.pass' => $config['logins']['read']['pass'],
-    'guzzle.client.write.user' => $config['logins']['write']['user'],
-    'guzzle.client.write.pass' => $config['logins']['write']['pass'],
+    'guzzle.client.read.user' => $app['config']['login_read_user'],
+    'guzzle.client.read.pass' => $app['config']['login_read_pass'],
+    'guzzle.client.write.user' => $app['config']['login_write_user'],
+    'guzzle.client.write.pass' => $app['config']['login_write_pass'],
 ));
 
 /**
@@ -38,16 +32,19 @@ $app->register(new Paza\Provider\GuzzleServiceProvider(), array(
  *
  * @param string $url
  */
-$guzzleRead = function ($url) use ($app, $config) {
+$guzzleRead = function ($url) use ($app) {
     $client = $app['guzzle.client.read']();
 
-    $response = $client->get($config['urls']['rest'] . $url)->send();
+    $response = $client->get($app['config']['parameters']['url_rest'] . $url)->send();
 
     // TODO: extract duplicate code
     $body = json_decode($response->getBody());
 
-    $body->urls = $config['urls'];
-    $body->retroepics = $config['retrospective-epics'];
+    $body->urls = [
+        'jira' => $app['config']['parameters']['url_jira'],
+        'rest' => $app['config']['parameters']['url_rest'],
+    ];
+    $body->retroepics = $app['config']['parameters']['retrospective_epics'];
 
     $response = new Response(json_encode($body), $response->getStatusCode());
     $response->headers->set('Content-Type', 'application/json');
@@ -62,16 +59,19 @@ $guzzleRead = function ($url) use ($app, $config) {
  * @param string $url
  * @param array $data
  */
-$guzzlePost = function ($url, $data) use ($app, $config) {
+$guzzlePost = function ($url, $data) use ($app) {
     $client = $app['guzzle.client.write']();
 
-    $response = $client->post($config['urls']['rest'] . $url, $data)->send();
+    $response = $client->post($app['config']['parameters']['url_rest'] . $url, $data)->send();
 
     // TODO: extract duplicate code
     $body = json_decode($response->getBody());
 
-    $body->urls = $config['urls'];
-    $body->retroepics = $config['retrospective-epics'];
+    $body->urls = [
+        'jira' => $app['config']['parameters']['url_jira'],
+        'rest' => $app['config']['parameters']['url_rest'],
+    ];
+    $body->retroepics = $app['config']['parameters']['retrospective-epics'];
 
     $response = new Response(json_encode($body), $response->getStatusCode());
     $response->headers->set('Content-Type', 'application/json');

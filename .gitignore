@@ -2,4 +2,4 @@
 /vendor/
 composer.phar
 /cache/
-config.json
+config.yml
