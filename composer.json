@@ -15,7 +15,8 @@
         "silex/silex": "~1.2",
         "incenteev/composer-parameter-handler": "^2.1",
         "symfony/yaml": "^2.7",
-        "deralex/yaml-config-service-provider": "^1.0"
+        "deralex/yaml-config-service-provider": "^1.0",
+        "graviton/deploy-scripts": "^0.2.2"
     },
     "scripts": {
         "post-install-cmd": [
@@ -26,18 +27,35 @@
         ]
     },
     "extra": {
-        "incenteev-parameters": {
-            "file": "config.yml",
-            "env-map": {
-                "url_jira": "JIRA_URL",
-                "url_rest": "JIRA_REST",
-                "login_read_user": "JIRA_RO_USER",
-                "login_read_pass": "JIRA_RO_PASS",
-                "login_write_user": "JIRA_RW_USER",
-                "login_write_pass": "JIRA_RW_PASS",
-                "retrospective_epics": "JIRA_RETRO_EPICS"
+        "incenteev-parameters": [
+            {
+                "file": "config.yml",
+                "env-map": {
+                    "url_jira": "JIRA_URL",
+                    "url_rest": "JIRA_REST",
+                    "login_read_user": "JIRA_RO_USER",
+                    "login_read_pass": "JIRA_RO_PASS",
+                    "login_write_user": "JIRA_RW_USER",
+                    "login_write_pass": "JIRA_RW_PASS",
+                    "retrospective_epics": "JIRA_RETRO_EPICS"
+                }
+            },
+            {
+                "parameter-key": "deploy-scripts",
+                "file": "app/config/deploy.yml",
+                "env-map": {
+                    "cf_bin": "CF_BIN",
+                    "cf_process_timeout": "CF_PROCESS_TIMEOUT",
+                    "cf_api_url": "CF_API_URL",
+                    "cf_username": "CF_USERNAME",
+                    "cf_password": "CF_PASSWORD",
+                    "cf_org": "CF_ORG",
+                    "cf_space": "CF_SPACE",
+                    "cf_domain": "CF_DOMAIN",
+                    "cf_services": "CF_SERVICES"
+                }
             }
-        }
+        ]
     },
     "autoload": {
         "psr-4": {

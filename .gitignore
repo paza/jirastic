@@ -3,3 +3,4 @@
 composer.phar
 /cache/
 config.yml
+app/config/deploy.yml

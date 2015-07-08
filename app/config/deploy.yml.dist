@@ -1,0 +1,11 @@
+deploy-scripts:
+  cf_bin: cf
+  cf_process_timeout: 600
+  cf_api_url: 'https://api.appcloud-nova.swisscom.com'
+  cf_username: ~
+  cf_password: ~
+  cf_org: ~
+  cf_space: dev
+  cf_domain: 'nova.scapp.io'
+  cf_services: {}
+  cf_environment_vars: {"JIRA_URL": "", "JIRA_REST": "", "JIRA_RO_USER": "", "JIRA_RO_PASS": "", "JIRA_RW_USER": "", "JIRA_RW_PASS": "", "JIRA_RETRO_EPICS": ""}
