@@ -9,20 +9,54 @@
             "email": "pazaaa@gmail.com"
         }
     ],
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "hakimel/reveal.js",
+                "version": "3.1.0",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://github.com/hakimel/reveal.js/archive/3.1.0.zip",
+                    "reference": "3.1.0"
+                }
+            }
+        }
+    ],
     "require": {
         "php": "~5.4",
         "guzzle/guzzle": "~3.9",
         "silex/silex": "~1.2",
         "incenteev/composer-parameter-handler": "^2.1",
         "symfony/yaml": "^2.7",
-        "deralex/yaml-config-service-provider": "^1.0"
+        "deralex/yaml-config-service-provider": "^1.0",
+        "twig/twig": "^1.22",
+        "symfony/twig-bridge": "^2.7",
+        "hakimel/reveal.js": "3.1.0",
+        "components/font-awesome": "^4.4"
     },
     "scripts": {
         "post-install-cmd": [
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters"
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "rm -rf web/reveal && mkdir web/reveal",
+            "cp -R vendor/hakimel/reveal.js/js web/reveal/",
+            "cp -R vendor/hakimel/reveal.js/css web/reveal/",
+            "cp -R vendor/hakimel/reveal.js/plugin web/reveal/",
+            "cp -R vendor/hakimel/reveal.js/lib web/reveal/",
+            "rm -rf web/fontawesome && mkdir web/fontawesome",
+            "cp -R vendor/components/font-awesome/css web/fontawesome/",
+            "cp -R vendor/components/font-awesome/fonts web/fontawesome/"
         ],
         "post-update-cmd": [
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters"
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "rm -rf web/reveal && mkdir web/reveal",
+            "cp -R vendor/hakimel/reveal.js/js web/reveal/",
+            "cp -R vendor/hakimel/reveal.js/css web/reveal/",
+            "cp -R vendor/hakimel/reveal.js/plugin web/reveal/",
+            "cp -R vendor/hakimel/reveal.js/lib web/reveal/",
+            "rm -rf web/fontawesome && mkdir web/fontawesome",
+            "cp -R vendor/components/font-awesome/css web/fontawesome/",
+            "cp -R vendor/components/font-awesome/fonts web/fontawesome/"
         ]
     },
     "extra": {
@@ -34,8 +68,7 @@
                 "login_read_user": "JIRA_RO_USER",
                 "login_read_pass": "JIRA_RO_PASS",
                 "login_write_user": "JIRA_RW_USER",
-                "login_write_pass": "JIRA_RW_PASS",
-                "retrospective_epics": "JIRA_RETRO_EPICS"
+                "login_write_pass": "JIRA_RW_PASS"
             }
         }
     },

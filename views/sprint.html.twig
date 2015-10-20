@@ -1,0 +1,182 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ parent() }}
+{% endblock %}
+
+{% block head %}
+
+    <link rel="stylesheet" href="/reveal/css/reveal.css">
+    <link rel="stylesheet" href="/reveal/css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="/reveal-customize/style.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="/reveal/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? '/reveal/css/print/pdf.css' : '/reveal/css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+{% endblock %}
+
+{% block footer %}
+    <script src="/reveal/lib/js/head.min.js"></script>
+    <script src="/reveal/js/reveal.js"></script>
+
+    <script>
+
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            width: 1280,
+            height: 1024,
+
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            previewLinks: false,
+
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+            // Optional reveal.js plugins
+            dependencies: [
+                { src: '/reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '/reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/reveal/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                { src: '/reveal/plugin/zoom-js/zoom.js', async: true },
+                { src: '/reveal/plugin/notes/notes.js', async: true }
+            ]
+        });
+
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>{{sprintData.sprint.name}}</h1>
+                <h3>resumé</h3>
+                <p>{{sprintData.sprint.startDate}} - {{sprintData.sprint.endDate}}</p>
+            </section>
+
+            <section>
+                <h1>{{sprintData.sprint.name}}</h1>
+                <h3>overview</h3>
+                <p>
+
+                    {% for issuesByStatus in mappedIssues %}
+
+                        <a href="#/{{issuesByStatus.id}}" class="bubbleWrapper {{issuesByStatus.class}}" data-preview-link>
+                            <span class="bubble">
+                                {{issuesByStatus.total}}
+                            </span>
+                            <br>
+                            {{issuesByStatus.titleShort}}
+                        </a>
+
+                    {% endfor %}
+
+                </p>
+            </section>
+
+            {% for issuesByStatus in mappedIssues %}
+                <section data-background="{{issuesByStatus.bgcolor}}" id="{{issuesByStatus.id}}">
+                    <div class="header">
+                        <i class="fa {{issuesByStatus.icon}}"></i>
+                        {{issuesByStatus.title}}
+                    </div>
+                    <section>
+                        <h1>{{issuesByStatus.title}}</h1>
+
+                        {% if issuesByStatus.issues %}
+                        <table>
+                            <thead>
+                                <th>key</th>
+                                <th title="Story Points">sp</th>
+                                <th>description</th>
+                            </thead>
+                            <tbody>
+                            {% for issue in issuesByStatus.issues %}
+                                <tr>
+                                    <td nowrap>
+                                        <a href="https://issue.swisscom.ch/browse/{{issue.key}}" data-preview-link>
+                                            {{issue.key}}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {{issue.storyPoints}}
+                                    </td>
+                                    <td>{{issue.fields.summary}}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                        <p>no issues</p>
+                        {% endif %}
+                    </section>
+
+                    {% for issue in issuesByStatus.issues %}
+                        <section>
+                            <h1>
+                                <a href="https://issue.swisscom.ch/browse/{{issue.key}}" data-preview-link>
+                                    {{issue.key}}
+                                </a>
+                                <small>({{issue.storyPoints}})</small>
+                            </h1>
+                            <p>{{issue.fields.summary}}</p>
+                            <p class="ownerInfo">
+                                <small>created by</small> {{issue.creatorName}} /
+                                {% if issue.ownerName %}
+                                    <small>owned by</small> {{issue.ownerName}} /
+                                {% endif %}
+                                <small>assigned to</small> {{issue.assigneeName}}
+                            </p>
+
+                            <div class="stretch testInstruction">
+                                <div class="stretchInner">
+                                    {{issue.testInstruction|raw}}
+                                    {#{{issue.renderedFields.description|raw}}#}
+                                </div>
+                            </div>
+                        </section>
+                    {% endfor %}
+
+                </section>
+            {% endfor %}
+
+            <section>
+                <h1>{{sprintData.sprint.name}}</h1>
+                <h3>overview</h3>
+                <p>
+
+                    {% for issuesByStatus in mappedIssues %}
+
+                        <a href="#/{{issuesByStatus.id}}" class="bubbleWrapper {{issuesByStatus.class}}" data-preview-link>
+                            <span class="bubble">
+                                {{issuesByStatus.total}}
+                            </span>
+                            <br>
+                            {{issuesByStatus.titleShort}}
+                        </a>
+
+                    {% endfor %}
+
+                </p>
+            </section>
+        </div>
+    </div>
+{% endblock %}

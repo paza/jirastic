@@ -5,4 +5,3 @@ parameters:
     login_read_pass:
     login_write_user:
     login_write_pass:
-    retrospective_epics: ["JIRA-1234", "JIRA-2345"]

@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ parent() }}
+{% endblock %}
+
+{% block head %}
+
+    <link rel="stylesheet" href="/css/sprints.css">
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
+
+{% block content %}
+<div class="reveal">
+    <div class="item">
+        <h2>Boards</h2>
+        <ul class="boards">
+        {% for board in boards %}
+            <li>
+                <a {% if activeBoard == board.id %}class="active"{% endif %} href="{{path('board-sprints', {'boardId': board.id})}}">{{board.name}}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+    {% if activeBoard %}
+    <div class="item">
+        <h2>Sprints</h2>
+        <ul class="sprints">
+        {% for sprint in sprints %}
+            <li>
+                <a class="{{sprint.state}}" href="{{path('sprint-presentation', {'boardId': activeBoard, 'sprintId': sprint.id})}}">{{sprint.name}}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

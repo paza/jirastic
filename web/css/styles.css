@@ -1,3 +1,12 @@
+/*
+    blue    #337ab7
+    green   #5cb85c
+    red     #d9534f
+    orange  #f0ad4e
+    grey    #777
+
+*/
+
 .page-header > div {
     display: inline-block;
 }
@@ -17,15 +26,6 @@
 .table h2 {
     margin-top: 2px;
 }
-
-/*
-    blue    #337ab7
-    green   #5cb85c
-    red     #d9534f
-    orange  #f0ad4e
-    grey    #777
-
-*/
 
 .issues td:last-child {
     font-size: 250%;

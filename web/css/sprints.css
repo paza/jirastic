@@ -1,0 +1,49 @@
+/*
+    blue    #337ab7
+    green   #5cb85c
+    red     #d9534f
+    orange  #f0ad4e
+    grey    #777
+
+*/
+
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.item {
+    display: inline-block;
+    vertical-align: top;
+    padding: 1rem;
+}
+
+.item ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.item li {
+    margin: 0.2rem 0 0 0;
+}
+
+a {
+    color: #f0ad4e;
+    text-decoration: none;
+}
+a.active {
+    font-weight: bold;
+    color: #d9534f;
+}
+a.ACTIVE {
+    color: #5cb85c;
+    font-weight: bold;
+}
+a.FUTURE {
+    color: #337ab7;
+    font-weight: bold;
+}
+a:hover {
+    color: #d9534f;
+}
